@@ -131,6 +131,14 @@ class CurrencyTransformerTest extends \PHPUnit_Framework_TestCase
             [
                 'pięćset czterdzieści pięć złotych dziewięćdziesiąt dziewięć groszy',
                 new Amount(new Number(545.99), new Currency('PLN'), new SubunitFormat(SubunitFormat::WORDS))
+            ],
+            [
+                'dziewięćset czterdzieści złotych dziewiętnaście groszy',
+                new Amount(new Number(940.19), new Currency('PLN'), new SubunitFormat(SubunitFormat::WORDS))
+            ],
+            [
+                'piętnaście tysięcy dziewięćset siedemdziesiąt dwa złote trzydzieści groszy',
+                new Amount(new Number(15972.30), new Currency('PLN'), new SubunitFormat(SubunitFormat::WORDS))
             ]
         ];
     }
