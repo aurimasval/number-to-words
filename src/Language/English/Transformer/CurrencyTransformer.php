@@ -62,7 +62,7 @@ class CurrencyTransformer extends BaseCurrencyTransformer
      */
     protected function getIntegerPart(Number $number)
     {
-        $value = $number->getValue();
+        $value = (int) $number->getValue();
         $unitName = $this->currencyDictionary->getUnitName($this->currency, !$this->isSingular($value));
 
         return $this->numberTransformer->toWords($value) . ' ' . $unitName;
@@ -98,6 +98,14 @@ class CurrencyTransformer extends BaseCurrencyTransformer
      */
     protected function isSingular($number)
     {
-        return $number == 1;
+        $string  = (string) $number;
+        $lastElement = (int) substr($string, -1);
+
+        if (strlen($string) > 1) {
+            $beforeLast = (int) substr($string, -2, 1);
+            return $lastElement === 1 && $beforeLast !== 1;
+        }
+
+        return $lastElement === 1;
     }
 }

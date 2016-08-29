@@ -115,7 +115,10 @@ class Number
         if ((int) $value == $value) {
             $subunits = '0';
         } else {
+            $value = number_format((float)$value, 2, '.', '');
+
             $valueParts = explode('.', (string) $value);
+
             $subunits   = array_pop($valueParts);
         }
 
