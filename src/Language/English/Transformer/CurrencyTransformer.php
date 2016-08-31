@@ -40,7 +40,11 @@ class CurrencyTransformer extends BaseCurrencyTransformer
     {
         $number = $this->createCurrencyNumber($number);
 
-        return $this->getIntegerPart($number) . ' ' . $this->getFractionalPart($number);
+        $words = $this->getIntegerPart($number);
+        if ($number->getSubunits() > 0) {
+            $words .= ' ' . $this->getFractionalPart($number);
+        }
+        return $words;
     }
 
     /**
@@ -86,7 +90,7 @@ class CurrencyTransformer extends BaseCurrencyTransformer
 
         $unitName = $this->currencyDictionary->getSubunitName($this->currency, !$this->isSingular($subunitValue));
 
-        return $this->numberTransformer->toWords($subunitValue) . ' ' . $unitName;
+        return $subunitValue . ' ' . $unitName;
     }
 
     /**
